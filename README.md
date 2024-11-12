@@ -30,7 +30,8 @@ The application architecture consists of:
 - **API Gateway** - Acts as the entry point to the serverless application, routing HTTP requests to AWS Lambda
   functions.
 - **AWS Lambda** - Executes code in response to triggers, accessing Couchbase Capella
-- **Couchbase Database** - Couchbase’s cloud database platform that optimizes data storage and processing for both
+- **Couchbase Capella Database** - Couchbase’s cloud database platform that optimizes data storage and processing for
+  both
   JSON-native operational and analytical data. A faster, better DBaaS for transaction, search, AI, and edge
   applications, with real-time analytics.
 - **AWS SAM** - Provides an infrastructure-as-code template to define, configure, and deploy the entire serverless
@@ -101,5 +102,7 @@ To test your API with Postman, follow these steps:
 
 ![](images/img.png)
 
+Example of get All Airlines
 
+![](images/all_airlines.png)
 
