@@ -13,7 +13,7 @@
     },
     "scripts": {
         "test": "jest",
-        "build": "sam build",
+        "build": "sam build -u --no-cached",
         "start": "sam local start-api",
         "deploy": "sam deploy --guided"
     }
