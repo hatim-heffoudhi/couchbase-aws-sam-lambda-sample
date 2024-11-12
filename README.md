@@ -4,6 +4,10 @@ This repository provides a sample integration between [Couchbase](https://www.co
 , [AWS SAM (Serverless Application Model)](https://aws.amazon.com/serverless/sam/), and AWS Lambda. It demonstrates how
 to deploy and interact with Couchbase Capella from an AWS Lambda function using AWS SAM.
 
+Additionally, the application is fully configurable **to run locally**, allowing for **local testing** and development
+using the AWS SAM CLI. This provides a convenient environment for developers to test Lambda functions and Couchbase
+integration without needing to deploy to AWS.
+
 ## Table of Contents
 
 - [Overview](#overview)
