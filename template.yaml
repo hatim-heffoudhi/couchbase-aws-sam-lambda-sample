@@ -1,0 +1,92 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  couchbase-aws-sam-lambda-sample
+Transform:
+  - AWS::Serverless-2016-10-31
+
+Resources:
+  # This is a Lambda function config associated with the source code: get-all-items.js
+  getAllItemsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/get-all-items.getAllItemsHandler
+      Runtime: nodejs16.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 60
+      Description: Lambda get all items from couchbase cluster
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /
+            Method: GET
+
+  # This is a Lambda function config associated with the source code: get-by-id.js
+  deleteItemFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/delete-item.deleteItemHandler
+      Runtime: nodejs16.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 60
+      Description: Lambda to delete item by id
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /{id}
+            Method: DELETE
+  # This is a Lambda function config associated with the source code: get-by-id.js
+  getByIdFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/get-by-id.getByIdHandler
+      Runtime: nodejs16.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 60
+      Description: Lambda to get item by id
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /{id}
+            Method: GET
+  # This is a Lambda function config associated with the source code: put-item.js
+  putItemFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/upsert-item.upsertItemHandler
+      Runtime: nodejs16.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 60
+      Description: Lambda to upsert item by id
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /
+            Method: POST
+Outputs:
+  WebEndpoint:
+    Description: API Gateway endpoint URL for Prod stage
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    LoggingConfig:
+      LogFormat: JSON
+    Environment:
+      Variables:
+        COUCHBASE_HOST: "cb.9ilkkta0nilcnuj4.cloud.couchbase.com"
+        COUCHBASE_BUCKET: "travel-sample"
+        COUCHBASE_USERNAME: "Hatim"
+        COUCHBASE_PASSWORD: "Samsung3!"
+
