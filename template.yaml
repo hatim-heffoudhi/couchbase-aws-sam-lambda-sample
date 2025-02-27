@@ -10,10 +10,10 @@ Globals:
       LogFormat: JSON
     Environment:
       Variables:
-        COUCHBASE_HOST: "cb.26engrxo9s19emrz.cloud.couchbase.com"
+        COUCHBASE_HOST: "cb.xxxxxxx.cloud.couchbase.com" # Change it with your Couchbase Host
         COUCHBASE_BUCKET: "travel-sample"
         COUCHBASE_USERNAME: "lambda-sample-user"
-        COUCHBASE_PASSWORD: "Gnusma3!"
+        COUCHBASE_PASSWORD: "xxxxxx" # change it with your Password
 Resources:
   # This is a Lambda function config associated with the source code: get-all-items.js
   getAllAirlinesFunction:
