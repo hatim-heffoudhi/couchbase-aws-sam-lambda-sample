@@ -1,0 +1,100 @@
+{
+	"info": {
+		"_postman_id": "820e093c-6abf-4636-b8ee-5c19a9683477",
+		"name": "sam-lambda-with-Capella",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "24921722"
+	},
+	"item": [
+		{
+			"name": "Get All Airlines",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/?limit=10&lastKey=",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "10",
+							"description": "limit the result"
+						},
+						{
+							"key": "lastKey",
+							"value": "",
+							"description": "last key for next pagination"
+						}
+					]
+				},
+				"description": "Get all airlines from airline collection ( use limit and lastKey for pagination)"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Airline by Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/airline_10",
+				"description": "Get specific Airline by Id"
+			},
+			"response": []
+		},
+		{
+			"name": "Upsert Airline",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"airline_xxxx\",\n    \"callsign\": \"TXW\",\n    \"country\": \"United States\",\n    \"iata\": \"TQ\",\n    \"icao\": \"TXW\",\n    \"name\": \"Texas Wings\",\n    \"type\": \"airline\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/",
+				"description": "Update or Insert an Airline ( take example of airline and change Id to insert )"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Airline",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:3000/airline_xxxx",
+				"description": "Delete Airline by Id"
+			},
+			"response": []
+		},
+		{
+			"name": "Search Airline by name",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"American Air\",\n    \"limit\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/search/",
+				"description": "Search Airlines ( this requires that an FTS index is created, check medium blog for the steps)"
+			},
+			"response": []
+		}
+	]
+}
