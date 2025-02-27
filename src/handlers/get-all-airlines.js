@@ -4,9 +4,9 @@
 const {initCouchbaseBucket} = require('../util/couchbaseClient');
 
 /**
- * Get All Items
+ * Get All Airlines
  */
-exports.getAllItemsHandler = async (event) => {
+exports.getAllAirlinesHandler = async (event) => {
 
     let response = {};
     let lastKey = "";

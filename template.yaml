@@ -3,19 +3,29 @@ Description: >-
   couchbase-aws-sam-lambda-sample
 Transform:
   - AWS::Serverless-2016-10-31
-
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    LoggingConfig:
+      LogFormat: JSON
+    Environment:
+      Variables:
+        COUCHBASE_HOST: "cb.xxxxxxx.cloud.couchbase.com" # Change it with your Couchbase Host
+        COUCHBASE_BUCKET: "travel-sample"
+        COUCHBASE_USERNAME: "lambda-sample-user"
+        COUCHBASE_PASSWORD: "xxxxxx" # change it with your Password
 Resources:
   # This is a Lambda function config associated with the source code: get-all-items.js
-  getAllItemsFunction:
+  getAllAirlinesFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: src/handlers/get-all-items.getAllItemsHandler
+      Handler: src/handlers/get-all-airlines.getAllAirlinesHandler
       Runtime: nodejs16.x
       Architectures:
         - x86_64
       MemorySize: 128
       Timeout: 60
-      Description: Lambda get all items from couchbase cluster
+      Description: Lambda get all airlines
       Events:
         Api:
           Type: Api
@@ -24,16 +34,16 @@ Resources:
             Method: GET
 
   # This is a Lambda function config associated with the source code: get-by-id.js
-  deleteItemFunction:
+  deleteAirlineFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: src/handlers/delete-item.deleteItemHandler
+      Handler: src/handlers/delete-airline.deleteAirlineHandler
       Runtime: nodejs16.x
       Architectures:
         - x86_64
       MemorySize: 128
       Timeout: 60
-      Description: Lambda to delete item by id
+      Description: Lambda to delete airline by id
       Events:
         Api:
           Type: Api
@@ -41,16 +51,16 @@ Resources:
             Path: /{id}
             Method: DELETE
   # This is a Lambda function config associated with the source code: get-by-id.js
-  getByIdFunction:
+  getAirlineByIdFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: src/handlers/get-by-id.getByIdHandler
+      Handler: src/handlers/get-airline.getByIdHandler
       Runtime: nodejs16.x
       Architectures:
         - x86_64
       MemorySize: 128
       Timeout: 60
-      Description: Lambda to get item by id
+      Description: Lambda to get Airline by id
       Events:
         Api:
           Type: Api
@@ -58,10 +68,10 @@ Resources:
             Path: /{id}
             Method: GET
   # This is a Lambda function config associated with the source code: put-item.js
-  putItemFunction:
+  putAirlineFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: src/handlers/upsert-item.upsertItemHandler
+      Handler: src/handlers/upsert-airline.upsertAirlineHandler
       Runtime: nodejs16.x
       Architectures:
         - x86_64
@@ -74,19 +84,27 @@ Resources:
           Properties:
             Path: /
             Method: POST
+
+  # This is a Lambda function config associated with the source code: put-item.js
+  searchAirlineFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/search-airline-by-name.searchAirlineHandler
+      Runtime: nodejs16.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 60
+      Description: Lambda to search item by name
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /search/
+            Method: POST
 Outputs:
   WebEndpoint:
     Description: API Gateway endpoint URL for Prod stage
     Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
-# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
-Globals:
-  Function:
-    LoggingConfig:
-      LogFormat: JSON
-    Environment:
-      Variables:
-        COUCHBASE_HOST: "cb.9ilkkta0nilcnuj4.cloud.couchbase.com"
-        COUCHBASE_BUCKET: "travel-sample"
-        COUCHBASE_USERNAME: "Hatim"
-        COUCHBASE_PASSWORD: "Samsung3!"
+
 

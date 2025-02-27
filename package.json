@@ -1,7 +1,7 @@
 {
     "name": "couchbase-aws-sam-lambda-sample",
     "description": "Sample for Lambda serverless with Couchbase",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "private": true,
     "author": "Hatim Heffoudhi",
     "dependencies": {
@@ -13,8 +13,9 @@
     },
     "scripts": {
         "test": "jest",
-        "build": "sam build -u --no-cached",
-        "start": "sam local start-api",
-        "deploy": "sam deploy --guided"
+        "build:api": "sam build -u --no-cached",
+        "start:api": "sam local start-api",
+        "stop:api": "docker ps | grep '/lambda/nodejs' | awk '{print $1}' | xargs -r docker rm -f",
+        "deploy:api": "sam deploy --guided"
     }
 }

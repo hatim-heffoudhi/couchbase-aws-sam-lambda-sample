@@ -335,8 +335,9 @@ $RECYCLE.BIN/
 *.msix
 *.msm
 *.msp
-
+package-lock.json
 # Windows shortcuts
 *.lnk
-
+.aws-sam
+.aws-sam/*
 # End of https://www.toptal.com/developers/gitignore/api/osx,node,linux,windows,sam

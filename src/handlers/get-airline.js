@@ -5,7 +5,7 @@ const {initCouchbaseBucket} = require('../util/couchbaseClient');
 
 
 /**
- * Get All Items
+ * Get Airline by Id
  */
 exports.getByIdHandler = async (event) => {
 
@@ -20,7 +20,7 @@ exports.getByIdHandler = async (event) => {
         const id = event.pathParameters.id;
 
         if (!id) {
-            throw new Error("Document id is required for get Id.");
+            throw new Error("Airline id is required for this operation");
         }
 
         const result = await collection.get(id);
@@ -31,7 +31,7 @@ exports.getByIdHandler = async (event) => {
     } catch (ResourceNotFoundException) {
         response = {
             statusCode: 404,
-            body: "Unable to call couchbase."
+            body: "Airline not found."
         };
     }
 
