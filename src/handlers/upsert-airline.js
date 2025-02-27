@@ -4,9 +4,9 @@
 const {initCouchbaseBucket} = require('../util/couchbaseClient');
 
 /**
- * Lambda function upsertItem
+ * Lambda function Upsert Airline
  */
-exports.upsertItemHandler = async (event) => {
+exports.upsertAirlineHandler = async (event) => {
     if (event.httpMethod !== 'POST') {
         throw new Error(`postMethod only accepts POST method, you tried: ${event.httpMethod} method.`);
     }

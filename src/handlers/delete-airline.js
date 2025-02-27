@@ -4,9 +4,9 @@
 const {initCouchbaseBucket} = require('../util/couchbaseClient');
 
 /**
- * Lambda function Delete
+ * Lambda function Delete Airline
  */
-exports.deleteItemHandler = async (event) => {
+exports.deleteAirlineHandler = async (event) => {
     if (event.httpMethod !== 'DELETE') {
         throw new Error(`deleteItemHandler only accepts DELETE method, you tried: ${event.httpMethod} method.`);
     }

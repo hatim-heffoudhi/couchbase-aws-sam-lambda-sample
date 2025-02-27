@@ -13,10 +13,6 @@ async function initCouchbaseBucket() {
         return bucket;
     }
     try {
-        console.log(COUCHBASE_HOST);
-        console.log(COUCHBASE_BUCKET);
-        console.log(COUCHBASE_PASSWORD);
-        console.log(COUCHBASE_USERNAME);
         // Initialize cluster
         console.log('Initializing Couchbase cluster and bucket...');
         const cluster = await couchbase.connect(`couchbases://${COUCHBASE_HOST}`, {
